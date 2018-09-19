@@ -1,0 +1,23 @@
+{
+    "presets": [
+        "env",
+        "react"
+    ],
+    "env": {
+        "production": {
+            "plugins": ["transform-react-remove-prop-types"]
+        }
+    },
+    "plugins": [
+        "transform-class-properties",
+        [
+            "transform-imports", {
+                "react-router": {
+                    "transform": "react-router/${member}",
+                    "preventFullImport": true
+                }
+            }
+        ],
+        "transform-object-rest-spread"
+    ]
+}
