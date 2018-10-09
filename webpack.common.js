@@ -108,10 +108,10 @@ module.exports = {
                     {
                         loader: 'image-webpack-loader',
                         options: {
-                            mozjpeg: {
-                                progressive: true,
-                                quality: 65
-                            },
+                            // mozjpeg: {
+                            //     progressive: true,
+                            //     quality: 65
+                            // },
                             optipng: {
                                 enabled: true,
                             },
