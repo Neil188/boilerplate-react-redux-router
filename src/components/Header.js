@@ -31,7 +31,7 @@ Header.propTypes = {
     startLogOutProcess: PropTypes.func.isRequired,
 }
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
     startLogOutProcess: () => dispatch(startLogOut()),
 });
 
