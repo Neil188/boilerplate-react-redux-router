@@ -16,3 +16,12 @@ test('should remove uid on logout', () => {
     const state = authReducer( { uid: 'anything' }, action);
     expect(state.uid).toBe(undefined);
 });
+
+test('should return state on unknown action', () => {
+    const action = {
+        type: 'UNKNOWN',
+    };
+    const INITSTATE = { test: true };
+    const state = authReducer( INITSTATE, action);
+    expect(state).toBe( INITSTATE );
+});
