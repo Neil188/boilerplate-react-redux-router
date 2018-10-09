@@ -1,4 +1,5 @@
-node_modules/
+coverage/
 dist/
-.env.test
+node_modules/
 .env.development
+.env.test

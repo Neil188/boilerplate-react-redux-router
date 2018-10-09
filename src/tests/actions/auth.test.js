@@ -1,4 +1,6 @@
-import { login, logout } from '../../actions/auth';
+import { login, logout, startLogin, startLogOut } from '../../actions/auth';
+
+jest.mock('../../firebase');
 
 test('should generate login action object', () => {
     const DUMMYUID = 'xxx123';
@@ -14,4 +16,16 @@ test('should generate logout action object', () => {
     expect(action).toEqual({
         type: 'LOGOUT',
     });
+});
+
+test('should call startLogin with googleAuth', () => {
+    const expected = 'signInWithPopup(googleAuthProvider)'
+    const action = startLogin()();
+    expect(action).toEqual(expected);
+});
+
+test('should call startLogOut', () => {
+    const expected = 'signOut'
+    const action = startLogOut()();
+    expect(action).toEqual(expected);
 });

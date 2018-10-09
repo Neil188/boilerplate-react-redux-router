@@ -22,7 +22,7 @@ LoginPage.propTypes = {
     startLoginProcess: PropTypes.func.isRequired,
 }
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
     startLoginProcess: () => dispatch(startLogin()),
 });
 

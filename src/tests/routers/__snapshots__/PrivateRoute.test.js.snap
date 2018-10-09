@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render PrivateRoute for authorised user 1`] = `
+<Route
+  component={[Function]}
+/>
+`;
+
+exports[`should render PrivateRoute for unauthorised user 1`] = `
+<Route
+  component={[Function]}
+/>
+`;
