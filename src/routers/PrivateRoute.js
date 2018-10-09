@@ -30,7 +30,7 @@ PrivateRoute.propTypes = {
     component: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
     isAuthenticated: !!state.auth.uid,
 })
 
