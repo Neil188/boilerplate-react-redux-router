@@ -25,17 +25,12 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name].[contenthash].js',
+        chunkFilename: '[name].[chunkhash].js',
     },
     optimization: {
         runtimeChunk: 'single',
         splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    chunks: 'all',
-                }
-            }
+            chunks: 'all'
         }
     },
     plugins: [

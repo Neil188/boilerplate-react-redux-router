@@ -1,6 +1,7 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import handleAuthStateChanged,  { renderApp, jsx }
+import handleAuthStateChanged,  { renderApp, LoadableProvider }
     from '../../utils/handleAuthStateChanged';
 import { login, logout } from '../../actions/auth';
 import { history } from '../../routers/AppRouter';
@@ -15,8 +16,8 @@ const store = {
     subscribe: jest.fn()
 }
 
-test('should render jsx correctly', () => {
-    const wrapper = shallow(jsx(store));
+test('should render LoadableProvider correctly', () => {
+    const wrapper = shallow(<LoadableProvider store={store} />);
     expect(wrapper).toMatchSnapshot();
 });
 
@@ -31,14 +32,18 @@ test('if already rendered do not call render again', () => {
     expect(ReactDOM.render).not.toBeCalled();
 });
 
-test('Handle user logged out auth state change', () => {
-    handleAuthStateChanged(store)(null);
-    expect(logout).toBeCalled();
-    expect(login).not.toBeCalled();
-    expect(history.push).toHaveBeenLastCalledWith('/');
+test('Handle user logged out auth state change', done => {
+    handleAuthStateChanged(store)(null)
+        .then( () => {
+            expect(store.dispatch).toBeCalled();
+            expect(logout).toBeCalled();
+            expect(login).not.toBeCalled();
+            expect(history.push).toHaveBeenLastCalledWith('/');
+            done();
+        })
 });
 
-test('Handle user logged in auth state change, with redirect', () => {
+test('Handle user logged in auth state change, with redirect', done => {
     const user = {
         uid: 1
     }
@@ -46,11 +51,15 @@ test('Handle user logged in auth state change, with redirect', () => {
     login.mockClear();
     history.location.pathname = '/'
 
-    handleAuthStateChanged(store)(user);
-    expect(logout).not.toBeCalled();
-    expect(login).toBeCalled();
-    expect(login).toHaveBeenLastCalledWith(user.uid);
-    expect(history.push).toHaveBeenLastCalledWith('/dashboard');
+    handleAuthStateChanged(store)(user)
+        .then( () => {
+            expect(logout).not.toBeCalled();
+            expect(login).toBeCalled();
+            expect(login).toHaveBeenLastCalledWith(user.uid);
+            expect(history.push).toHaveBeenLastCalledWith('/dashboard');
+            done();
+
+        })
 });
 
 test('Handle user logged in auth state change, without redirect', () => {

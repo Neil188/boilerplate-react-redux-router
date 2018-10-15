@@ -1,3 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render jsx correctly 1`] = `<AppRouter />`;
+exports[`should render LoadableProvider correctly 1`] = `
+<LoadingPage
+  error={null}
+  isLoading={true}
+  pastDelay={false}
+  retry={[Function]}
+  timedOut={false}
+/>
+`;
