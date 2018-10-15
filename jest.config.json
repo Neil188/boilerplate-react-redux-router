@@ -13,6 +13,15 @@
         "src/**.js",
         "server/**.js",
         "!server/server.js",
-        "!src/store/*.js"
-    ]
+        "!src/store/*.js",
+        "!src/app.js"
+    ],
+    "coverageThreshold": {
+        "global": {
+            "branches": 75,
+            "functions": 75,
+            "lines": 75,
+            "statements": -25
+        }
+    }
 }
